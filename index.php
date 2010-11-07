@@ -13,7 +13,7 @@ Author URI: http://valendesigns.com
  *
  * @since 1.0.0
  */
-define( 'OT_VERSION', '1.0.0' );
+define( 'OT_VERSION', '1.1.1' );
 define( 'OT_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . dirname( plugin_basename( __FILE__ ) ) );
 define( 'OT_PLUGIN_URL', WP_PLUGIN_URL . '/' . dirname( plugin_basename( __FILE__ ) ) );
 
