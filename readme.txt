@@ -4,7 +4,7 @@ Donate link:
 Tags: admin, theme options, options, admin interface, ajax
 Requires at least: 3.0
 Tested up to: 3.1
-Stable tag: 1.1.6
+Stable tag: 1.1.7
 
 Customizable WordPress Theme Options Framework.
 
