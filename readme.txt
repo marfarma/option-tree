@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=accounts
 Tags: admin, theme options, options, admin interface, ajax
 Requires at least: 3.0
 Tested up to: 3.1.2
-Stable tag: 1.1.7
+Stable tag: 1.1.7.1
 License: GPLv2
 
 Extremely customizable Theme Options interface for WordPress.
@@ -43,6 +43,9 @@ Sorry, but yes. OptionTree requires PHP5 to work correctly.
 3. Documentation
 
 == Changelog ==
+
+= 1.1.7.1 =
+* Revert load option type function on Theme Options page. Will fix and update in next version
 
 = 1.1.7 =
 * Added layout (theme variation) support with save/delete/activate/import/export capabilities. Contributions form Brian of flauntbooks.com
@@ -98,6 +101,9 @@ Sorry, but yes. OptionTree requires PHP5 to work correctly.
 * Initial version
 
 == Upgrade Notice ==
+
+= 1.1.7.1 =
+Had to revert a line of code, from 1.1.7 please update.
 
 = 1.1.7 =
 Lots of additions, none critical just fun. Added layouts & upload to slider. As well, started including action hooks for extending and integrating with other plugins.
