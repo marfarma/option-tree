@@ -662,17 +662,41 @@ if ( ! function_exists( 'ot_import' ) ) {
     
     /* check and verify import theme options data nonce */
     if ( isset( $_POST['import_data_nonce'] ) && wp_verify_nonce( $_POST['import_data_nonce'], 'import_data_form' ) ) {
-
-      /* textarea value */
-      $textarea = isset( $_POST['import_data'] ) ? unserialize( base64_decode( $_POST['import_data'] ) ) : '';
       
       /* default message */
       $message = 'failed';
       
-      /* is array: save & show success message */
-      if ( is_array( $textarea ) ) {
-        update_option( 'option_tree', $textarea );
+      /* textarea value */
+      $options = isset( $_POST['import_data'] ) ? unserialize( base64_decode( $_POST['import_data'] ) ) : '';
+      
+      /* get settings array */
+      $settings = get_option( 'option_tree_settings' );
+      
+      /* has options */
+      if ( is_array( $options ) ) {
+        
+        /* validate options */
+        if ( is_array( $settings ) ) {
+        
+          foreach( $settings['settings'] as $setting ) {
+          
+            if ( isset( $options[$setting['id']] ) ) {
+              
+              $content = ot_stripslashes( $options[$setting['id']] );
+              
+              $options[$setting['id']] = ot_validate_setting( $content, $setting['type'] );
+              
+            }
+          
+          }
+        
+        }
+        
+        /* update the option tree array */
+        update_option( 'option_tree', $options );
+        
         $message = 'success';
+        
       }
       
       /* redirect accordingly */
@@ -683,22 +707,61 @@ if ( ! function_exists( 'ot_import' ) ) {
     
     /* check and verify import layouts nonce */
     if ( isset( $_POST['import_layouts_nonce'] ) && wp_verify_nonce( $_POST['import_layouts_nonce'], 'import_layouts_form' ) ) {
-
-      /* textarea value */
-      $textarea = isset( $_POST['import_layouts'] ) ? unserialize( base64_decode( $_POST['import_layouts'] ) ) : '';
       
       /* default message */
       $message = 'failed';
       
-      /* is array: save & show success message */
-      if ( is_array( $textarea ) ) {
-        if ( isset( $textarea['active_layout'] ) ) {
-          update_option( 'option_tree', unserialize( base64_decode( $textarea[$textarea['active_layout']] ) ) );
-        }
-        update_option( 'option_tree_layouts', $textarea );
-        $message = 'success';
-      }
+      /* textarea value */
+      $layouts = isset( $_POST['import_layouts'] ) ? unserialize( base64_decode( $_POST['import_layouts'] ) ) : '';
       
+      /* get settings array */
+      $settings = get_option( 'option_tree_settings' );
+      
+      /* has layouts */
+      if ( is_array( $layouts ) ) {
+        
+        /* validate options */
+        if ( is_array( $settings ) ) {
+          
+          foreach( $layouts as $key => $value ) {
+            
+            if ( $key == 'active_layout' )
+              continue;
+              
+            $options = unserialize( base64_decode( $value ) );
+            
+            foreach( $settings['settings'] as $setting ) {
+
+              if ( isset( $options[$setting['id']] ) ) {
+                
+                $content = ot_stripslashes( $options[$setting['id']] );
+                
+                $options[$setting['id']] = ot_validate_setting( $content, $setting['type'] );
+                
+              }
+            
+            }
+
+            $layouts[$key] = base64_encode( serialize( $options ) );
+          
+          }
+        
+        }
+        
+        /* update the option tree array */
+        if ( isset( $layouts['active_layout'] ) ) {
+        
+          update_option( 'option_tree', unserialize( base64_decode( $layouts[$layouts['active_layout']] ) ) );
+          
+        }
+        
+        /* update the option tree layouts array */
+        update_option( 'option_tree_layouts', $layouts );
+        
+        $message = 'success';
+        
+      }
+        
       /* redirect accordingly */
       wp_redirect( add_query_arg( array( 'action' => 'import-layouts', 'message' => $message ), $_POST['_wp_http_referer'] ) );
       exit;
