@@ -1,0 +1,49 @@
+# Copyright (C) 2013 
+# This file is distributed under the same license as the  package.
+msgid ""
+msgstr ""
+"Project-Id-Version:  \n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/option-tree\n"
+"POT-Creation-Date: 2013-04-03 01:27:38+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2013-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: classes/class.admin.php:950
+msgid "Options"
+msgstr ""
+
+#: classes/class.admin.php:1028
+msgid "Somebody"
+msgstr ""
+
+#: classes/class.admin.php:1029
+msgid "Theme Options"
+msgstr ""
+
+#: classes/class.admin.php:1029
+msgid "Settings"
+msgstr ""
+
+#: classes/class.admin.php:1031
+msgid "Warning: %s is currently editing the %s."
+msgstr ""
+
+#: front-end/options.php:19 front-end/options.php:79
+msgid "Save All Changes"
+msgstr ""
+
+#: front-end/options.php:78
+msgid "Reset Options"
+msgstr ""
+
+#: front-end/settings.php:207
+msgid "Import XML"
+msgstr ""
+
+#: front-end/settings.php:224
+msgid "Import Data"
+msgstr ""
